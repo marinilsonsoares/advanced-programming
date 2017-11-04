@@ -1,15 +1,13 @@
-#include "ap_error.h"
 #include <assert.h>
 #include <cmath>
 #include <iostream>
+
+#include "ap_error.h"
+
 // implment a square root function that "deals with" negative
 // numbers. Moreover according to the logic of the program, d should
 // never be greater than 50
 double square_root(const double d);
-
-struct Square_root_invalid {
-  std::string message;
-};
 
 int main() {
   try {
@@ -19,7 +17,7 @@ int main() {
     double d = square_root(number);
     std::cout << "square root of " << number << " is " << d << '\n';
     return 0;
-  } catch (std::runtime_error& e) {
+  } catch (const std::runtime_error& e) {
     std::cerr << e.what() << std::endl;
     return 1;
   } catch (...) {

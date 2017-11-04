@@ -1,7 +1,8 @@
-#include "ap_error.h"
 #include <assert.h>
 #include <cmath>
 #include <iostream>
+
+#include "ap_error.h"
 
 // implment a square root function that "deals with" negative
 // numbers. Moreover according to the logic of the program, d should
@@ -16,7 +17,7 @@ int main() {
     double d = square_root(number);
     std::cout << "square root of " << number << " is " << d << '\n';
     return 0;
-  } catch (std::runtime_error& e) {
+  } catch (const std::runtime_error& e) {
     std::cerr << e.what() << '\n';
     return 1;
   }
@@ -24,8 +25,8 @@ int main() {
 
 double square_root(const double d) {
   // test the pre-conditions
-  // assert(d >= 0 && d <= 50);
+  assert(d >= 0 && d <= 50);
   // AP_assert(d>=0 && d<=50, "d should be in the range [0,50]", "d=",d);
-  AP_assert(d >= 0 && d <= 50, NotInRange(0, 50, d));
+  // AP_assert(d >= 0 && d <= 50, NotInRange(0, 50, d));
   return sqrt(d);
 }

@@ -19,26 +19,36 @@ class Vector {
   double* elem;
 
  public:
-  Vector(const unsigned int l) : elem{new double[l]} {}
-  ~Vector() noexcept { delete[] elem; }
+  Vector(const unsigned int l) : elem{new double[l]} {
+    std::cout << "Vector\n";
+  }
+  ~Vector() noexcept {
+    delete[] elem;
+    std::cout << "~Vector\n";
+  }
 };
 
 class ManyResources {
+  double* ptr;
   Vector v;
-  double* second;
 
  public:
-  ManyResources() : v{3} {
+  ManyResources() : ptr{nullptr}, v{3} {
+    std::cout << "Manyresources\n";
     try {
-      second = new double[5];
+      // AP_error("Error in ManyResources ctor\n"); // what happens here?
+      ptr = new double[5];  // new(std::nothrow) double[5] could be better
       AP_error("Error in ManyResources ctor\n");
     } catch (...) {
-      delete[] second;
+      delete[] ptr;  // <----
       throw;
     }
   }
 
-  ~ManyResources() noexcept { delete[] second; }
+  ~ManyResources() noexcept {
+    std::cout << "Manyresources\n";
+    delete[] ptr;  // <----
+  }
 };
 
 int main() {
@@ -50,7 +60,7 @@ int main() {
     ManyResources mr;
     Bar b;
 
-  } catch (std::exception& e) {
+  } catch (const std::exception& e) {
     std::cerr << e.what() << std::endl;
 
     delete[] raw_ptr;  // <---
