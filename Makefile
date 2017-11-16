@@ -1,7 +1,12 @@
 # Simple Makefile to compile all the sample codes provided during the
 # course of Advanced Programming
 
+<<<<<<< HEAD
 FNAMES = 01_intro 02_arrays 03_classes 04_error_handling 05_constructors
+=======
+FNAMES = 01_intro 02_arrays 03_classes 04_error_handling 05_constructors \
+	06_inheritance
+>>>>>>> 04e766d17d317b81ab8cb2c4156b2e495359512c
 FOLDERS = $(addprefix lectures/, $(FNAMES))
 
 
