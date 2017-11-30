@@ -39,7 +39,18 @@ class Snake : public Animal {
     Animal::info();
     std::cout << "dangerous:\t" << (dangerous ? "true" : "false") << std::endl;
   }
+
+  Snake(const Snake& s) : Animal{s}, dangerous{s.dangerous} {}
+
+  Snake& operator=(const Snake& s) {
+    
+
+    dangerous = s.dangerous;
+    return *this;
+  }
+
   void speak() const noexcept override { std::cout << "ssss\n"; }
+
 };
 
 inline void newline() noexcept {

@@ -1,5 +1,5 @@
 SRC = $(wildcard *.cc)
-CXXFLAGS = -std=c++14 -Wall -Wextra -I ../../lectures/04_error_handling -O0
+CXXFLAGS = -std=c++11 -Wall -Wextra -I ../../lectures/04_error_handling -O0 -g
 EXE = $(SRC:.cc=.x)
 INC = $(wildcard *.h)
 CXX=c++
